@@ -1,0 +1,40 @@
+{
+  "groups": [
+    {
+      "name": "redis",
+      "type": "top.alexmmd.common.redis.autoconfig.RedisConfigProperties",
+      "sourceType": "top.alexmmd.common.redis.autoconfig.RedisConfigProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "redis.database",
+      "type": "java.lang.Integer",
+      "sourceType": "top.alexmmd.common.redis.autoconfig.RedisConfigProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "redis.host",
+      "type": "java.lang.String",
+      "sourceType": "top.alexmmd.common.redis.autoconfig.RedisConfigProperties",
+      "defaultValue": "localhost"
+    },
+    {
+      "name": "redis.password",
+      "type": "java.lang.String",
+      "sourceType": "top.alexmmd.common.redis.autoconfig.RedisConfigProperties"
+    },
+    {
+      "name": "redis.port",
+      "type": "java.lang.Integer",
+      "sourceType": "top.alexmmd.common.redis.autoconfig.RedisConfigProperties",
+      "defaultValue": 6379
+    },
+    {
+      "name": "redis.username",
+      "type": "java.lang.String",
+      "sourceType": "top.alexmmd.common.redis.autoconfig.RedisConfigProperties"
+    }
+  ],
+  "hints": []
+}

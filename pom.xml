@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <modules>
+    <module>alex-base</module>
+    <module>alex-redis</module>
+    <module>alex-rocketmq</module>
+  </modules>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.5.7</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+  <groupId>top.alexmmd.common</groupId>
+  <artifactId>alex-common</artifactId>
+  <version>1.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>alex-common</name>
+  <description>alex-common</description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>1.8</java.version>
+    <alex.common.version>1.0.1-SNAPSHOT</alex.common.version>
+  </properties>
+
+  <dependencyManagement>
+
+    <dependencies>
+      <dependency>
+        <groupId>cn.hutool</groupId>
+        <artifactId>hutool-all</artifactId>
+        <version>5.8.7</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <finalName>alex-common</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!-- 发布maven私服 -->
+  <distributionManagement>
+    <repository>
+      <!--ID可以随便写，但是要与maven的setting文件中一致-->
+      <id>release</id>
+      <!--指向仓库类型为hosted(宿主仓库）的储存类型为Release的仓库-->
+      <url>https://www.alexmmd.top/nexus/repository/maven-releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshot</id>
+      <url>https://www.alexmmd.top/nexus/repository/maven-snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+</project>

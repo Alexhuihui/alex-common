@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+top.alexmmd.common.rocketmq.config.RocketMqAutoConfiguration
