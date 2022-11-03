@@ -7,6 +7,8 @@
     <module>alex-base</module>
     <module>alex-redis</module>
     <module>alex-rocketmq</module>
+    <module>alex-db</module>
+    <module>alex-security</module>
   </modules>
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -34,6 +36,18 @@
         <groupId>cn.hutool</groupId>
         <artifactId>hutool-all</artifactId>
         <version>5.8.7</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>1.2.5</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper-spring-boot-starter</artifactId>
+        <version>1.2.5</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

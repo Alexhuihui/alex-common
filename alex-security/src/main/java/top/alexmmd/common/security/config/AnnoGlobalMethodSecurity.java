@@ -1,0 +1,16 @@
+package top.alexmmd.common.security.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+
+/**
+ * 开启基于注解的接口访问控制
+ *
+ * @author wangyonghui
+ * @date 2022年10月31日 13:43:00
+ */
+@Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+public class AnnoGlobalMethodSecurity {
+
+}
