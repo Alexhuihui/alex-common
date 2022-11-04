@@ -92,16 +92,6 @@
 
   <!-- 发布maven私服 -->
   <distributionManagement>
-<!--    <repository>-->
-<!--      &lt;!&ndash;ID可以随便写，但是要与maven的setting文件中一致&ndash;&gt;-->
-<!--      <id>release</id>-->
-<!--      &lt;!&ndash;指向仓库类型为hosted(宿主仓库）的储存类型为Release的仓库&ndash;&gt;-->
-<!--      <url>https://www.alexmmd.top/nexus/repository/maven-releases/</url>-->
-<!--    </repository>-->
-<!--    <snapshotRepository>-->
-<!--      <id>snapshot</id>-->
-<!--      <url>https://www.alexmmd.top/nexus/repository/maven-snapshots/</url>-->
-<!--    </snapshotRepository>-->
     <repository>
       <id>github</id>
       <name>GitHub OWNER Apache Maven Packages</name>
