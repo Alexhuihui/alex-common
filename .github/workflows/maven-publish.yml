@@ -37,4 +37,4 @@ jobs:
         run: mvn --batch-mode deploy -DskipTests -Prelease-nexus
         env:
           MAVEN_USERNAME: ${{ secrets.NEXUS_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.NEXUS_TOKEN }}
+          MAVEN_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
