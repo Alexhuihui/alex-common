@@ -24,18 +24,17 @@ jobs:
   release:
     runs-on: ubuntu-18.04
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
-
-      - name: Install Java and Maven
-        uses: actions/setup-java@v1
+      - uses: actions/checkout@v3
+      - name: Set up Maven Central Repository
+        uses: actions/setup-java@v3
         with:
-          java-version: 11
-
-      - name: Release Maven package
-        uses: samuelmeuli/action-maven-publish@v1
-        with:
-          maven_profiles: 'release-nexus'
-          maven_args: '-DskipTests'
-          nexus_username: ${{ secrets.NEXUS_USERNAME }}
-          nexus_password: ${{ secrets.NEXUS_PASSWORD }}
+          java-version: '11'
+          distribution: 'adopt'
+          server-id: release-nexus
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+      - name: Publish package
+        run: mvn --batch-mode deploy -DskipTests -Prelease-nexus
+        env:
+          MAVEN_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.NEXUS_TOKEN }}
