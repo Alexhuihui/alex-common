@@ -9,6 +9,7 @@
     <module>alex-rocketmq</module>
     <module>alex-db</module>
     <module>alex-security</module>
+    <module>alex-web</module>
   </modules>
   <parent>
     <groupId>org.springframework.boot</groupId>
