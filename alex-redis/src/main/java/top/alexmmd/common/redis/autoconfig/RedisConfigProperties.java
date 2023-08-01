@@ -21,4 +21,7 @@ public class RedisConfigProperties {
     private int port = 6379;
 
     private int database = 0;
+
+    private String delayQueueName;
+
 }

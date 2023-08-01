@@ -29,7 +29,7 @@ public abstract class AbstractQueue implements Queue {
     protected String name;
     protected static Map<String, IQueueListener> listenerMap;
     protected static RedissonClient redissonClient = SpringUtil.getBean(RedissonClient.class);
-    protected static String LOCK_PREFIX = "gk:queue:listeners";
+    protected static String LOCK_PREFIX = "alex:queue:listeners";
 
     @SuppressWarnings("WeakerAccess")
     protected static ExecutorService consumerThreadPool;

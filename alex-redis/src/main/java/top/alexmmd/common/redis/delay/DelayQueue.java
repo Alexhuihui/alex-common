@@ -1,11 +1,11 @@
 package top.alexmmd.common.redis.delay;
 
 import cn.hutool.core.lang.Pair;
-import cn.hutool.json.JSONUtil;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RBlockingDeque;
 import org.redisson.api.RDelayedQueue;
+import top.alexmmd.common.base.utils.ReflectUtil;
 
 /**
  * @author 汪永晖
@@ -19,7 +19,7 @@ public class DelayQueue extends AbstractQueue {
     private RBlockingDeque<Pair<String, String>> blockingDeque;
 
     public DelayQueue(String name, RDelayedQueue<Pair<String, String>> delayedQueue,
-                      RBlockingDeque<Pair<String, String>> blockingDeque) {
+            RBlockingDeque<Pair<String, String>> blockingDeque) {
         super(name);
         this.blockingDeque = blockingDeque;
         this.delayedQueue = delayedQueue;
@@ -27,20 +27,26 @@ public class DelayQueue extends AbstractQueue {
 
     public static DelayQueue create(String name) {
         RBlockingDeque<Pair<String, String>> blockingDeque = redissonClient.getBlockingDeque(name);
-        RDelayedQueue<Pair<String, String>> delayedQueue = redissonClient.getDelayedQueue(blockingDeque);
+        RDelayedQueue<Pair<String, String>> delayedQueue = redissonClient.getDelayedQueue(
+                blockingDeque);
         return new DelayQueue(name, delayedQueue, blockingDeque);
     }
 
     public <T> void offer(String topic, T body, long delay) {
-        delayedQueue.offer(Pair.of(topic, JSONUtil.toJsonStr(body)), delay, TimeUnit.SECONDS);
+        delayedQueue.offer(Pair.of(topic, ReflectUtil.transfer(body)), delay, TimeUnit.SECONDS);
     }
 
     public <T> void remove(String topic, T body) {
-        delayedQueue.remove(Pair.of(topic, JSONUtil.toJsonStr(body)));
+        delayedQueue.remove(Pair.of(topic, ReflectUtil.transfer(body)));
+    }
+
+    public <T> Boolean contains(String topic, T body) {
+        return delayedQueue.contains(Pair.of(topic, ReflectUtil.transfer(body)));
     }
 
     @Override
     protected Pair<String, String> take() throws InterruptedException {
         return blockingDeque.take();
     }
+
 }
