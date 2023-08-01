@@ -10,6 +10,7 @@
     <module>alex-db</module>
     <module>alex-security</module>
     <module>alex-web</module>
+    <module>alex-file</module>
   </modules>
   <parent>
     <groupId>org.springframework.boot</groupId>
