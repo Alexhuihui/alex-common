@@ -1,4 +1,4 @@
-package top.alexmmd.common.base.constant;
+package top.alexmmd.common.base.http.response;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import top.alexmmd.common.base.http.response.BaseResponse;
+import top.alexmmd.common.base.constant.StatusCode;
 
 /**
  * @author wangyonghui
