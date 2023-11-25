@@ -27,7 +27,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>1.8</java.version>
+    <java.version>11</java.version>
     <alex.common.version>1.0.1-SNAPSHOT</alex.common.version>
   </properties>
 
