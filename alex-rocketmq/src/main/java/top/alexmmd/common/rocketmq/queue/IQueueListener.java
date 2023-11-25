@@ -4,7 +4,7 @@ package top.alexmmd.common.rocketmq.queue;
  * 队列监听
  *
  * @author wangyonghui
- * @date 2022年09月29日 11:24:00
+ * @since 2022年09月29日 11:24:00
  */
 public interface IQueueListener {
 

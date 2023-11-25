@@ -4,7 +4,7 @@ package top.alexmmd.common.redis.api;
  * 队列监听
  *
  * @author 汪永晖
- * @date 2021/12/21 14:10
+ * @since 2021/12/21 14:10
  */
 public interface IQueueListener {
 

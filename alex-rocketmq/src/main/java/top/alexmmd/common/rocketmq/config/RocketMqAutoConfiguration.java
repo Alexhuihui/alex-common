@@ -14,7 +14,7 @@ import top.alexmmd.common.rocketmq.annos.EnableRocketMq;
  * rocketmq自动配置类
  *
  * @author wangyonghui
- * @date 2022年09月29日 11:10:00
+ * @since 2022年09月29日 11:10:00
  */
 @Configuration
 @ConditionalOnBean(annotation = EnableRocketMq.class)

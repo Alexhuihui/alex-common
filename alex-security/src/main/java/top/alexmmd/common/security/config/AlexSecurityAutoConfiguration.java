@@ -9,7 +9,7 @@ import top.alexmmd.common.security.annos.EnableSecurity;
  * 安全自动配置
  *
  * @author wangyonghui
- * @date 2022年10月31日 14:04:00
+ * @since 2022年10月31日 14:04:00
  */
 @Configuration
 @ConditionalOnBean(annotation = EnableSecurity.class)

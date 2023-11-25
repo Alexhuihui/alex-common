@@ -3,16 +3,15 @@ package top.alexmmd.common.web.exception;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.StrUtil;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Path.Node;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import javax.validation.Path;
-import javax.validation.Path.Node;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
@@ -29,7 +28,7 @@ import top.alexmmd.common.base.http.response.BaseResponse;
 
 /**
  * @author wangyonghui
- * @date 2022年12月28日 15:35:00
+ * @since 2022年12月28日 15:35:00
  */
 @ControllerAdvice
 @ResponseBody

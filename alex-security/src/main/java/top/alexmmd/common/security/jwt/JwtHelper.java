@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author wangyonghui
- * @date 2022年12月28日 17:12:00
+ * @since 2022年12月28日 17:12:00
  */
 @Slf4j
 public class JwtHelper {

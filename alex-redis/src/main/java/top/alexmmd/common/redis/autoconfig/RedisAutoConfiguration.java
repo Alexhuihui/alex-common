@@ -1,7 +1,7 @@
 package top.alexmmd.common.redis.autoconfig;
 
 import cn.hutool.core.util.StrUtil;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -15,7 +15,7 @@ import top.alexmmd.common.redis.delay.DelayClient;
 
 /**
  * @author 汪永晖
- * @date 2021/12/21 13:35
+ * @since 2021/12/21 13:35
  */
 @SuppressWarnings("ALL")
 @Configuration

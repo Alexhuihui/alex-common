@@ -13,7 +13,7 @@ import org.apache.rocketmq.common.message.MessageExt;
 
 /**
  * @author wangyonghui
- * @date 2022年09月29日 13:12:00
+ * @since 2022年09月29日 13:12:00
  */
 @Slf4j
 public abstract class AbstractRocketMqConcurrentlyListener<T> extends

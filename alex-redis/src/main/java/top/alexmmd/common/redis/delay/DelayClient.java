@@ -10,7 +10,7 @@ import top.alexmmd.common.redis.autoconfig.RedisConfigProperties;
 
 /**
  * @author 汪永晖
- * @date 2021/12/21 15:15
+ * @since 2021/12/21 15:15
  */
 @Slf4j
 @SuppressWarnings("all")

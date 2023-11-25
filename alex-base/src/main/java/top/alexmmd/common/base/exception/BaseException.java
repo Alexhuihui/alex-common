@@ -5,7 +5,7 @@ import top.alexmmd.common.base.constant.StatusCode;
 
 /**
  * @author wangyonghui
- * @date 2022年12月28日 15:18:00
+ * @since 2022年12月28日 15:18:00
  */
 public class BaseException extends RuntimeException {
 

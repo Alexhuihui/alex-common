@@ -5,7 +5,7 @@ import lombok.Getter;
 
 /**
  * @author wangyonghui
- * @date 2022年12月28日 15:19:00
+ * @since 2022年12月28日 15:19:00
  */
 @Getter
 @AllArgsConstructor

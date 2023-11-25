@@ -7,7 +7,7 @@ import top.alexmmd.common.base.constant.StatusCode;
 
 /**
  * @author wangyonghui
- * @date 2022年12月28日 15:39:00
+ * @since 2022年12月28日 15:39:00
  */
 @Data
 public class ObjectResponse<T> extends BaseResponse {

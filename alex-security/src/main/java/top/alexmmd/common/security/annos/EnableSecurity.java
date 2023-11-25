@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
  * 开启安全保护
  *
  * @author wangyonghui
- * @date 2022年10月31日 14:05:00
+ * @since 2022年10月31日 14:05:00
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

@@ -14,7 +14,7 @@ import org.apache.rocketmq.common.message.MessageExt;
  * 顺序消费抽象类
  *
  * @author wangyonghui
- * @date 2022年09月29日 13:13:00
+ * @since 2022年09月29日 13:13:00
  */
 @Slf4j
 public abstract class AbstractRocketMqOrderlyListener<T> extends

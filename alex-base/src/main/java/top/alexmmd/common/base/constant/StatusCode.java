@@ -4,7 +4,7 @@ import top.alexmmd.common.base.exception.BaseException;
 
 /**
  * @author wangyonghui
- * @date 2022年12月28日 15:17:00
+ * @since 2022年12月28日 15:17:00
  */
 public interface StatusCode {
 

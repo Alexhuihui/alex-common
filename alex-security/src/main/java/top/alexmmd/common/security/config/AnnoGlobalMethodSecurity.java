@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
  * 开启基于注解的接口访问控制
  *
  * @author wangyonghui
- * @date 2022年10月31日 13:43:00
+ * @since 2022年10月31日 13:43:00
  */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)

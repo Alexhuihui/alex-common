@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * 队列消费者
  *
  * @author wangyonghui
- * @date 2022年09月29日 11:09:00
+ * @since 2022年09月29日 11:09:00
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

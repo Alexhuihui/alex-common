@@ -11,7 +11,7 @@ import org.apache.rocketmq.spring.core.RocketMQTemplate;
  * mq生产者
  *
  * @author wangyonghui
- * @date 2022年09月29日 13:14:00
+ * @since 2022年09月29日 13:14:00
  */
 @Slf4j
 public class MqProducer {

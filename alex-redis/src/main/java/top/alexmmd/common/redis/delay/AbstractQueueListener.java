@@ -10,7 +10,7 @@ import top.alexmmd.common.base.utils.ReflectUtil;
  * 延迟队列消费抽象类
  *
  * @author 汪永晖
- * @date 2021/12/22 14:30
+ * @since 2021/12/22 14:30
  */
 @Slf4j
 @SuppressWarnings("ALL")

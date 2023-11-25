@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 /**
  * @author wangyonghui
- * @date 2022年09月29日 11:16:00
+ * @since 2022年09月29日 11:16:00
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

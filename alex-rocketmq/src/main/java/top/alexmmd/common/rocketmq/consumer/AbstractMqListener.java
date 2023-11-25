@@ -2,8 +2,8 @@ package top.alexmmd.common.rocketmq.consumer;
 
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.MessageListener;
@@ -17,7 +17,7 @@ import top.alexmmd.common.rocketmq.queue.AbstractQueueListener;
  * mq消费抽象类
  *
  * @author wangyonghui
- * @date 2022年09月29日 11:21:00
+ * @since 2022年09月29日 11:21:00
  */
 @Slf4j
 public abstract class AbstractMqListener<T> extends AbstractQueueListener<T> implements

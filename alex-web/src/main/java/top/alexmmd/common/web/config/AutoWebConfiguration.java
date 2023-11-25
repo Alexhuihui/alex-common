@@ -6,7 +6,7 @@ import top.alexmmd.common.web.exception.GlobalExceptionHandler;
 
 /**
  * @author wangyonghui
- * @date 2022年12月28日 15:32:00
+ * @since 2022年12月28日 15:32:00
  */
 @Configuration
 public class AutoWebConfiguration {
