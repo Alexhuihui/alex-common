@@ -1,0 +1,47 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "top.alexmmd.common.web.config.OpenApiConfigProperties",
+      "name": "openapi",
+      "type": "top.alexmmd.common.web.config.OpenApiConfigProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "top.alexmmd.common.web.config.OpenApiConfigProperties",
+      "name": "openapi.enable",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "top.alexmmd.common.web.config.OpenApiConfigProperties",
+      "name": "openapi.version",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "top.alexmmd.common.web.config.OpenApiConfigProperties",
+      "name": "openapi.title",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "top.alexmmd.common.web.config.OpenApiConfigProperties",
+      "name": "openapi.description",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "top.alexmmd.common.web.config.OpenApiConfigProperties",
+      "name": "openapi.contactName",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "top.alexmmd.common.web.config.OpenApiConfigProperties",
+      "name": "openapi.contactEmail",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "top.alexmmd.common.web.config.OpenApiConfigProperties",
+      "name": "openapi.contactUrl",
+      "type": "java.lang.String"
+    }
+  ]
+}

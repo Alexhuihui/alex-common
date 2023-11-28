@@ -10,7 +10,7 @@ import top.alexmmd.common.web.exception.GlobalExceptionHandler;
  * @since 2022年12月28日 15:32:00
  */
 @Configuration
-@ImportAutoConfiguration({SwaggerConfiguration.class, JacksonConfig.class,
+@ImportAutoConfiguration({OpenApiConfig.class, JacksonConfig.class,
         CommonBeanConfiguration.class})
 public class AutoWebConfiguration {
 
