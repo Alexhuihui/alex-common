@@ -2,6 +2,7 @@ package top.alexmmd.common.base.http.response;
 
 import cn.hutool.json.JSONUtil;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import top.alexmmd.common.base.constant.BaseStatusCode;
 import top.alexmmd.common.base.constant.StatusCode;
 
@@ -9,6 +10,7 @@ import top.alexmmd.common.base.constant.StatusCode;
  * @author wangyonghui
  * @since 2022年12月28日 15:39:00
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class ObjectResponse<T> extends BaseResponse {
 

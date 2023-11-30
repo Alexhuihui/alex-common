@@ -1,8 +1,8 @@
 package top.alexmmd.common.base.web.service;
 
-import jakarta.annotation.Resource;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import top.alexmmd.common.base.utils.EntityUtils;
 import top.alexmmd.common.base.web.mapper.Mapper;
 import top.alexmmd.common.base.web.support.IDGenerator;
@@ -15,10 +15,10 @@ public abstract class BaseBiz<M extends Mapper<T>, T> {
     @Getter
     protected M mapper;
 
-    @Resource
+    @Autowired
     protected IDGenerator idGenerator;
 
-    @Resource
+    @Autowired
     protected ISecurityContext securityContext;
 
     public void setMapper(M mapper) {
