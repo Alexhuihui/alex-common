@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+  <property name="CONSOLE_LOG_PATTERN"
+    value="%d{COMPACT}|%-5p|%logger{64}[%line]|%t|${appName}|${env}|%m%n"/>
+  <include
+    resource="org/springframework/boot/logging/logback/defaults.xml"/>
+  <appender name="CONSOLE"
+    class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+  <appender name="FILE"
+    class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${user.dir}/logs/${appName}.log</File>
+    <encoder>
+      <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+      <charset>utf8</charset>
+    </encoder>
+    <rollingPolicy
+      class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- 添加.gz 历史日志会启用压缩 大大缩小日志文件所占空间 -->
+      <fileNamePattern>${user.dir}/logs/${LOG_FILE}.%d{yyyy-MM-dd}.log.gz
+      </fileNamePattern>
+      <maxHistory>7</maxHistory><!-- 保留7天日志 -->
+    </rollingPolicy>
+    <triggeringPolicy
+      class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <maxFileSize>2gb</maxFileSize>
+    </triggeringPolicy>
+  </appender>
+  <appender name="FILE_ERROR"
+    class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${user.dir}/logs/${appName}-error.log</File>
+    <encoder>
+      <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+      <charset>utf8</charset>
+    </encoder>
+    <rollingPolicy
+      class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- 添加.gz 历史日志会启用压缩 大大缩小日志文件所占空间 -->
+      <fileNamePattern>${user.dir}/logs/${LOG_FILE}.%d{yyyy-MM-dd}.log.gz
+      </fileNamePattern>
+      <maxHistory>7</maxHistory><!-- 保留7天日志 -->
+    </rollingPolicy>
+    <triggeringPolicy
+      class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <maxFileSize>2gb</maxFileSize>
+    </triggeringPolicy>
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>error</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+  </appender>
+
+  <springProfile name="local">
+    <root level="debug">
+      <appender-ref ref="CONSOLE"/>
+    </root>
+  </springProfile>
+
+  <springProfile name="dev">
+    <root level="debug">
+      <appender-ref ref="FILE_ERROR"/>
+      <appender-ref ref="FILE"/>
+      <appender-ref ref="CONSOLE"/>
+    </root>
+  </springProfile>
+  <springProfile name="sit">
+    <root level="debug">
+      <appender-ref ref="FILE_ERROR"/>
+      <appender-ref ref="FILE"/>
+      <appender-ref ref="CONSOLE"/>
+    </root>
+  </springProfile>
+  <springProfile name="preview">
+		<root level="debug">
+			<appender-ref ref="FILE_ERROR" />
+			<appender-ref ref="FILE" />
+			<appender-ref ref="CONSOLE" />
+		</root>
+	</springProfile>
+	<springProfile name="uat">
+		<root level="debug">
+			<appender-ref ref="FILE_ERROR" />
+			<appender-ref ref="FILE" />
+			<appender-ref ref="CONSOLE" />
+		</root>
+	</springProfile>
+  <springProfile name="prod">
+    <root level="info">
+      <appender-ref ref="FILE_ERROR"/>
+      <appender-ref ref="FILE"/>
+      <appender-ref ref="CONSOLE"/>
+    </root>
+  </springProfile>
+
+</included>

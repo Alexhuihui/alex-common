@@ -18,10 +18,10 @@ public class EsPageRequest extends BaseRequest implements Serializable {
     @Serial
     private static final long serialVersionUID = -5416906095051213469L;
 
-    @Schema(name = "分页大小")
+    @Schema(description = "分页大小")
     Integer size = 20;
 
-    @Schema(name = "当前页数")
+    @Schema(description = "当前页数")
     Integer from = 0;
 
     public static Integer getEsCurrent(Integer current, Integer pageSize) {
