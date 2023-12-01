@@ -1,6 +1,5 @@
 package top.alexmmd.common.base.web.service;
 
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import top.alexmmd.common.base.utils.EntityUtils;
@@ -12,7 +11,7 @@ import top.alexmmd.common.base.web.support.ISecurityContext;
 public abstract class BaseBiz<M extends Mapper<T>, T> {
 
 
-    @Getter
+    @Autowired
     protected M mapper;
 
     @Autowired
@@ -23,6 +22,10 @@ public abstract class BaseBiz<M extends Mapper<T>, T> {
 
     public void setMapper(M mapper) {
         this.mapper = mapper;
+    }
+
+    public M getMapper() {
+        return this.mapper;
     }
 
     public int insert(T entity) {
