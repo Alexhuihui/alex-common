@@ -5,9 +5,19 @@
       "sourceType": "top.alexmmd.common.web.config.OpenApiConfigProperties",
       "name": "openapi",
       "type": "top.alexmmd.common.web.config.OpenApiConfigProperties"
+    },
+    {
+      "sourceType": "top.alexmmd.common.web.config.ILogConfiguration",
+      "name": "log",
+      "type": "top.alexmmd.common.web.config.ILogConfiguration"
     }
   ],
   "properties": [
+    {
+      "sourceType": "top.alexmmd.common.web.config.ILogConfiguration",
+      "name": "log.enable",
+      "type": "java.lang.Boolean"
+    },
     {
       "sourceType": "top.alexmmd.common.web.config.OpenApiConfigProperties",
       "name": "openapi.enable",

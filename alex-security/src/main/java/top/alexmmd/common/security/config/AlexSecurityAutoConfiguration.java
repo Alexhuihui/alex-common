@@ -3,6 +3,7 @@ package top.alexmmd.common.security.config;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import top.alexmmd.common.security.annos.EnableSecurity;
 
 /**
@@ -14,6 +15,7 @@ import top.alexmmd.common.security.annos.EnableSecurity;
 @Configuration
 @ConditionalOnBean(annotation = EnableSecurity.class)
 @Import(AnnoGlobalMethodSecurity.class)
+@EnableWebSecurity
 public class AlexSecurityAutoConfiguration {
 
 }
