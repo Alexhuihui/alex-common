@@ -34,7 +34,7 @@ jobs:
       - name: Check if tag already exists
         id: check_tag
         run: |
-          TAG="v${{ steps.version.outputs.version }}"
+          TAG="${{ steps.version.outputs.version }}"
           echo "Checking if tag $TAG exists..."
           if git ls-remote --tags origin | grep -q "refs/tags/$TAG$"; then
             echo "Tag already exists: $TAG"
@@ -47,7 +47,7 @@ jobs:
       - name: Create tag (if not exists)
         if: steps.check_tag.outputs.exists == 'false'
         run: |
-          TAG="v${{ steps.version.outputs.version }}"
+          TAG="${{ steps.version.outputs.version }}"
           git tag -a "$TAG" -m "Release $TAG"
           git push origin "$TAG"
 
@@ -55,10 +55,10 @@ jobs:
         if: steps.check_tag.outputs.exists == 'false'
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: "v${{ steps.version.outputs.version }}"
-          name: "Release v${{ steps.version.outputs.version }}"
+          tag_name: "${{ steps.version.outputs.version }}"
+          name: "Release ${{ steps.version.outputs.version }}"
           body: |
-            🎉 **What's New in v${{ steps.version.outputs.version }}**
+            🎉 **What's New in ${{ steps.version.outputs.version }}**
 
             自动构建发布，子模块包含：
 
