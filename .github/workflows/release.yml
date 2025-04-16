@@ -27,7 +27,7 @@ jobs:
       - name: Extract version from root <version> tag
         id: version
         run: |
-          VERSION=$(xmllint --xpath "string(/project/version)" pom.xml)
+          VERSION=$(xmllint --xpath "string(/*[local-name()='project']/*[local-name()='version'])" pom.xml)
           echo "Version from pom.xml is $VERSION"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
