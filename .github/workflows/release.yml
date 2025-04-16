@@ -24,13 +24,10 @@ jobs:
       - name: Install xmllint
         run: sudo apt-get update && sudo apt-get install -y libxml2-utils
 
-      - name: Extract version from pom.xml (parent first, fallback to root)
+      - name: Extract version from root <version> tag
         id: version
         run: |
-          VERSION=$(xmllint --xpath "string(//parent/version)" pom.xml 2>/dev/null || true)
-          if [ -z "$VERSION" ]; then
-            VERSION=$(xmllint --xpath "string(//project/version)" pom.xml)
-          fi
+          VERSION=$(xmllint --xpath "string(/project/version)" pom.xml)
           echo "Version from pom.xml is $VERSION"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
@@ -63,8 +60,17 @@ jobs:
           body: |
             🎉 **What's New in v${{ steps.version.outputs.version }}**
 
-            自动构建发布，欢迎使用：
+            自动构建发布，子模块包含：
 
+            - alex-base
+            - alex-redis
+            - alex-rocketmq
+            - alex-db
+            - alex-security
+            - alex-web
+            - alex-file
+
+            🔗 链接：
             - [源码浏览](https://github.com/${{ github.repository }}/tree/v${{ steps.version.outputs.version }})
             - [提交记录](https://github.com/${{ github.repository }}/commits/v${{ steps.version.outputs.version }})
             - [JitPack 构建地址](https://jitpack.io/#${{ github.repository }}/v${{ steps.version.outputs.version }})
