@@ -1,0 +1,70 @@
+name: Release to JitPack
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # 需要写权限来创建 release
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: Extract version from pom.xml (parent first, fallback to root)
+        id: version
+        run: |
+          VERSION=$(xmllint --xpath "string(//parent/version)" pom.xml 2>/dev/null || true)
+          if [ -z "$VERSION" ]; then
+            VERSION=$(xmllint --xpath "string(//project/version)" pom.xml)
+          fi
+          echo "Version from pom.xml is $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Check if tag already exists
+        id: check_tag
+        run: |
+          TAG="v${{ steps.version.outputs.version }}"
+          echo "Checking if tag $TAG exists..."
+          if git ls-remote --tags origin | grep -q "refs/tags/$TAG$"; then
+            echo "Tag already exists: $TAG"
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "Tag does not exist: $TAG"
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create tag (if not exists)
+        if: steps.check_tag.outputs.exists == 'false'
+        run: |
+          TAG="v${{ steps.version.outputs.version }}"
+          git tag -a "$TAG" -m "Release $TAG"
+          git push origin "$TAG"
+
+      - name: Create GitHub Release
+        if: steps.check_tag.outputs.exists == 'false'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: "v${{ steps.version.outputs.version }}"
+          name: "Release v${{ steps.version.outputs.version }}"
+          body: |
+            🎉 **What's New in v${{ steps.version.outputs.version }}**
+
+            自动构建发布，欢迎使用：
+
+            - [源码浏览](https://github.com/${{ github.repository }}/tree/v${{ steps.version.outputs.version }})
+            - [提交记录](https://github.com/${{ github.repository }}/commits/v${{ steps.version.outputs.version }})
+            - [JitPack 构建地址](https://jitpack.io/#${{ github.repository }}/v${{ steps.version.outputs.version }})
+
+            ---
+            🚀 本版本由 GitHub Actions 自动生成。
