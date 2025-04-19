@@ -44,15 +44,25 @@ jobs:
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Force re-tag if tag exists
+        if: steps.check_tag.outputs.exists == 'true'
+        run: |
+          TAG="${{ steps.version.outputs.version }}"
+          echo "Deleting remote tag $TAG to force JitPack rebuild"
+          git push --delete origin "$TAG"
+          git tag -d "$TAG"
+          git tag -a "$TAG" -m "Force release $TAG"
+          git push origin "$TAG"
+
       - name: Create tag (if not exists)
         if: steps.check_tag.outputs.exists == 'false'
         run: |
           TAG="${{ steps.version.outputs.version }}"
           git tag -a "$TAG" -m "Release $TAG"
           git push origin "$TAG"
+      
 
       - name: Create GitHub Release
-        if: steps.check_tag.outputs.exists == 'false'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: "${{ steps.version.outputs.version }}"
