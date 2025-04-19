@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Set up Git
         run: |
@@ -50,9 +52,18 @@ jobs:
           TAG="${{ steps.version.outputs.version }}"
           echo "Deleting remote tag $TAG to force JitPack rebuild"
           git push --delete origin "$TAG"
-          git tag -d "$TAG"
+
+          if git tag | grep -q "^$TAG$"; then
+            echo "Deleting local tag $TAG"
+            git tag -d "$TAG"
+          else
+            echo "Local tag $TAG does not exist, skip deletion"
+          fi
+
+          echo "Re-creating tag $TAG"
           git tag -a "$TAG" -m "Force release $TAG"
           git push origin "$TAG"
+      
 
       - name: Create tag (if not exists)
         if: steps.check_tag.outputs.exists == 'false'
