@@ -26,6 +26,9 @@ jobs:
       - name: Install xmllint
         run: sudo apt-get update && sudo apt-get install -y libxml2-utils
 
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
       - name: Extract version from root <version> tag
         id: version
         run: |
@@ -46,22 +49,40 @@ jobs:
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Force re-tag if tag exists
+      - name: Force re-tag and delete release if tag exists
         if: steps.check_tag.outputs.exists == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="${{ steps.version.outputs.version }}"
-          echo "Deleting remote tag $TAG to force JitPack rebuild"
+          REPO="${{ github.repository }}"
+
+          echo "🔍 Trying to delete GitHub Release for tag $TAG"
+          API_URL="https://api.github.com/repos/$REPO/releases/tags/$TAG"
+
+          # 查询 release ID
+          RESPONSE=$(curl -s -H "Authorization: token $GITHUB_TOKEN" $API_URL)
+          RELEASE_ID=$(echo "$RESPONSE" | jq -r '.id')
+
+          if [ "$RELEASE_ID" != "null" ]; then
+            echo "✅ Found Release ID: $RELEASE_ID. Deleting release..."
+            curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/$REPO/releases/$RELEASE_ID
+          else
+            echo "⚠️ No GitHub Release found for $TAG"
+          fi
+
+          echo "🗑 Deleting remote tag $TAG"
           git push --delete origin "$TAG"
 
           if git tag | grep -q "^$TAG$"; then
-            echo "Deleting local tag $TAG"
+            echo "🧹 Deleting local tag $TAG"
             git tag -d "$TAG"
           else
-            echo "Local tag $TAG does not exist, skip deletion"
+            echo "✅ Local tag $TAG does not exist, skipping"
           fi
 
-          echo "Re-creating tag $TAG"
-          git tag -a "$TAG" -m "Force release $TAG"
+          echo "🔁 Re-creating and pushing tag $TAG"
+          git tag -a "$TAG" -m "Force re-release $TAG"
           git push origin "$TAG"
       
 
@@ -71,7 +92,11 @@ jobs:
           TAG="${{ steps.version.outputs.version }}"
           git tag -a "$TAG" -m "Release $TAG"
           git push origin "$TAG"
-      
+
+      - name: Trigger JitPack Rebuild
+        run: |
+          echo "Triggering JitPack rebuild..."
+          curl -s "https://jitpack.io/com/github/${{ github.repository }}/$(echo ${{ steps.version.outputs.version }} | tr -d 'v')/build.log" > /dev/null
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
